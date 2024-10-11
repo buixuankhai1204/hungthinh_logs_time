@@ -25,3 +25,9 @@ pub async fn get_all_players() -> Vec<Player> {
     let other_players = players.filter(age.gt(18)).limit(20).select(Player::as_select()).load::<Player>(connection).expect("Can not get all players");
     other_players
 }
+
+pub async fn get_player_by_id(id_input: i64) -> Option<Player> {
+    let connection = &mut establish_connection();
+    let player = players.filter(id.eq(&id_input)).first::<Player>(connection).expect("Can not get player by id");
+    Some(player)
+}

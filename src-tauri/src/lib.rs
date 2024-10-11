@@ -4,13 +4,14 @@ use dotenvy::dotenv;
 mod request;
 mod model;
 mod database;
-
+use model::player::my_custom_command;
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
             Ok(())
         })
+        .invoke_handler(tauri::generate_handler![my_custom_command])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

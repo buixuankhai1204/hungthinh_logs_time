@@ -3,9 +3,8 @@ use crate::request::game::GameUpdate;
 use diesel::prelude::*;
 use crate::model::schema::games::dsl::games;
 use diesel::{insert_into, update};
-use diesel::dsl::{date, now};
 use crate::model::game::Game;
-use crate::model::schema::games::id;
+use crate::model::schema::games::{id};
 
 pub async fn create_new_match(game: Game) -> Game {
     let mut connection = establish_connection();

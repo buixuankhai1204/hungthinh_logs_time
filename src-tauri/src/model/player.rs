@@ -21,3 +21,7 @@ pub struct Player {
     pub position: String,
 }
 
+#[tauri::command]
+pub fn my_custom_command() {
+    println!("I was invoked from JavaScript!");
+}
