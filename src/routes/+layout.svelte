@@ -1,53 +1,59 @@
+<!-- src/routes/__layout.svelte -->
 <script>
-	import Header from './Header.svelte';
-	import '../app.css';
+	let pages = [
+		{ name: "Match", route: "/match", icon: "🏠" },
+		{ name: "Team", route: "/team", icon: "🔍" },
+		{ name: "History", route: "/history", icon: "🔍" },
+		{ name: "Point", route: "/point", icon: "🔔" },
+		{ name: "Profile", route: "/profile", icon: "👤" }
+	];
 </script>
 
-<div class="app">
-	<Header />
-
-	<main>
-		<slot />
-	</main>
-
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
-</div>
-
 <style>
-	.app {
+	.app-layout {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
+		height: 100vh;
+		background: black;
+		color: white;
 	}
-
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
+	.content {
+		flex-grow: 1;
 		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
+		overflow: auto;
 	}
-
-	footer {
+	.bottom-nav {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
-		padding: 12px;
+		background-color: black;
+		border-top: 1px solid #ddd;
+		height: 60px;
+	}
+	.nav-item {
+		text-align: center;
+		flex-grow: 1;
+	}
+	.nav-item a {
+		text-decoration: none;
+		font-size: 1.2rem;
+		color: white;
 	}
 
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
 </style>
+
+<div class="app-layout">
+	<div class="content">
+		<slot></slot> <!-- The main content of each page goes here -->
+	</div>
+	<nav class="bottom-nav">
+		{#each pages as page}
+			<div class="nav-item">
+				<a href="{page.route}">
+					<span>{page.icon}</span><br />
+					<span>{page.name}</span>
+				</a>
+			</div>
+		{/each}
+	</nav>
+</div>

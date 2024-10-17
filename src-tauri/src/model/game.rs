@@ -1,9 +1,10 @@
 use diesel::{AsChangeset, Identifiable, Insertable, Queryable, Selectable};
-use serde::{Serialize, Serializer};
+use serde::{Deserialize, Serialize, Serializer};
 use std::time::SystemTime;
 
 #[derive(Queryable,
     Selectable,
+    Deserialize,
     Insertable,
     Identifiable,
     AsChangeset,
@@ -11,12 +12,14 @@ use std::time::SystemTime;
     Debug
 )]
 #[diesel(table_name = crate::model::schema::games)]
+#[diesel(belongs_to(crate::model::player::Team))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Game {
     pub id: i64,
     pub stadium: String,
-    pub competitor: String,
-    pub date: SystemTime,
+    pub s1: i64,
+    pub s2: i64,
+    pub date: String,
     pub result: String,
     pub is_win: bool,
 }

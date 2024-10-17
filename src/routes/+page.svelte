@@ -9,7 +9,8 @@
 
     async function getGreeting() {
         try {
-            greeting = await invoke('greet', {name});
+            greeting = await invoke('get_all_players', {name});
+            console.log(greeting);
         } catch (error) {
             console.error('Error invoking greet:', error);
         }
@@ -37,7 +38,7 @@
         try editing <strong>src/routes/+page.svelte</strong>
     </h2>
     <h1>SvelteKit with Tauri</h1>
-    <input type="text" bind:value={name} placeholder="Enter your name" />
+    <input type="text" bind:value={name} placeholder="Enter your name"/>
     <button on:click={getGreeting}>Greet</button>
     {#if greeting}
         <p>{greeting}</p>

@@ -1,15 +1,15 @@
-use crate::establish_connection;
 use crate::request::game::GameUpdate;
 use diesel::prelude::*;
 use crate::model::schema::games::dsl::games;
 use diesel::{insert_into, update};
 use crate::model::game::Game;
+use crate::model::schema::establish_connection;
 use crate::model::schema::games::{id};
 
-pub async fn create_new_match(game: Game) -> Game {
+#[tauri::command]
+pub async fn create_new_game(game: Game) -> Game {
     let mut connection = establish_connection();
     insert_into(games).values(&game).execute(&mut connection).expect("Can not inser new match");
-
     game
 }
 

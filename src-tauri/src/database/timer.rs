@@ -1,7 +1,7 @@
-use crate::establish_connection;
 use diesel::prelude::*;
 use crate::model::schema::timers::dsl::timers;
 use diesel::{insert_into};
+use crate::model::schema::establish_connection;
 use crate::model::schema::timers::{game_id, player_id};
 use crate::model::timer::Timer;
 
