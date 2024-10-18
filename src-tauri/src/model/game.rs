@@ -1,6 +1,6 @@
+use chrono::NaiveDateTime;
 use diesel::{AsChangeset, Identifiable, Insertable, Queryable, Selectable};
 use serde::{Deserialize, Serialize, Serializer};
-use std::time::SystemTime;
 
 #[derive(Queryable,
     Selectable,
@@ -22,4 +22,6 @@ pub struct Game {
     pub date: String,
     pub result: String,
     pub is_win: bool,
+    pub created_at: NaiveDateTime,
+    pub updated_at: NaiveDateTime,
 }

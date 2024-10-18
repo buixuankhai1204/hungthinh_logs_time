@@ -10,6 +10,8 @@ diesel::table! {
         nick_name -> Varchar,
         age -> Integer,
         role_position -> Varchar,
+        created_at -> Timestamp,
+        updated_at -> Timestamp
     }
 }
 
@@ -21,7 +23,9 @@ diesel::table! {
         s2 -> BigInt,
         date -> Varchar,
         result -> VarChar,
-        is_win -> Bool
+        is_win -> Bool,
+        created_at -> Timestamp,
+        updated_at -> Timestamp
     }
 }
 
@@ -30,7 +34,10 @@ diesel::table! {
         id -> BigInt,
         player_id -> BigInt,
         game_id -> BigInt,
+        team_id -> BigInt,
         time_each_block -> Float,
+        created_at -> Timestamp,
+        updated_at -> Timestamp
     }
 }
 
@@ -39,7 +46,9 @@ diesel::table! {
         id -> BigInt,
         name -> VarChar,
         size -> Integer,
-        current_size -> Integer
+        current_size -> Integer,
+        created_at -> Timestamp,
+        updated_at -> Timestamp
     }
 }
 
@@ -49,6 +58,8 @@ diesel::table! {
         team_id -> BigInt,
         start_date -> Nullable<Date>,
         end_date -> Nullable<Date>,
+        created_at -> Timestamp,
+        updated_at -> Timestamp
     }
 }
 diesel::joinable!(player_team -> players (player_id));

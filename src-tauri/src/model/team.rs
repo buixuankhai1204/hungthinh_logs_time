@@ -1,3 +1,4 @@
+use chrono::NaiveDateTime;
 use diesel::{Associations, Identifiable, Insertable, Queryable, Selectable};
 use serde::{Deserialize, Serialize};
 
@@ -18,6 +19,8 @@ pub struct Team {
     pub name: String,
     pub size: i32,
     pub current_size: i32,
+    pub created_at: NaiveDateTime,
+    pub updated_at: NaiveDateTime,
 }
 
 #[derive(Identifiable, Queryable, Associations, Debug)]

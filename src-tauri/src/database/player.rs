@@ -4,15 +4,11 @@ use crate::model::schema::players::dsl::players;
 use diesel::{insert_into, update};
 use diesel::associations::HasTable;
 use crate::model::schema::establish_connection;
-use crate::model::schema::player_team::{player_id, team_id as team_join_id};
 use crate::model::schema::players::{age, id};
-use crate::model::schema::teams::{id as team_own_id};
 use crate::model::team::{PlayerTeam, Team};
 use crate::request::player::PlayerUpdate;
 use diesel::BelongingToDsl;
 use crate::database::team::get_team_by_id;
-use crate::model::schema::player_team::dsl::player_team;
-use crate::model::schema::teams::dsl::teams;
 
 pub async fn create_new_player(player: Player) -> Player {
     let mut connection = establish_connection();

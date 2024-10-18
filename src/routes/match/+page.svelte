@@ -1,16 +1,16 @@
-<script>
+<script lang="ts">
     import {invoke} from "@tauri-apps/api/core";
 
     let showModal = false;
     let stadium = '';
-    let home = '';
+    let s1 = '';
     let s2 = '';
     let result = '';
     let is_win = false;
 
     let matchCreated = false;
-    let match = null;
-    let countdownTime = 5400; // 90 minutes = 5400 seconds
+    let match: Match;
+    let countdownTime = 60; // 90 minutes = 5400 seconds
     let timerInterval;
 
     // Mock data for stadiums, teams
@@ -21,9 +21,9 @@
     async function createMatch() {
         const data = await invoke('create_new_game', {
             game: {
-                id: 4,
+                id: 5,
                 stadium: stadium,
-                s1: home,
+                s1: s1,
                 s2: s2,
                 date: new Date(),
                 result: result,
@@ -41,7 +41,7 @@
             matchCreated = true;
             match = {
                 stadium,
-                home,
+                s1,
                 s2,
                 result,
                 is_win
@@ -243,7 +243,7 @@
             <!-- Home Team Selection -->
             <div class="form-group">
                 <label for="home">Home Team:</label>
-                <select id="home" bind:value={home}>
+                <select id="home" bind:value={s1}>
                     <option value="" disabled selected>Select Home Team</option>
                     {#each teams as team}
                         <option value={team}>{team}</option>
@@ -287,7 +287,7 @@
     <div class="match-info">
         <h3>Match Details</h3>
         <p><strong>Stadium:</strong> {match.stadium}</p>
-        <p><strong>Home Team:</strong> {match.home}</p>
+        <p><strong>Home Team:</strong> {match.s1}</p>
         <p><strong>Opponent Team:</strong> {match.s2}</p>
         <p><strong>Result:</strong> {match.result}</p>
         <p><strong>Is Win:</strong> {match.is_win ? 'Yes' : 'No'}</p>
